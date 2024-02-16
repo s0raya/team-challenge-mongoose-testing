@@ -1,0 +1,29 @@
+### Obtener publicaciones
+GET http://localhost:3000/
+
+### Crear publicacion
+POST http://localhost:3000/create
+Content-Type: application/json
+
+{
+    "title": "titulo 6",   
+    "body": "body 6"
+}
+
+### Buscar publicacion por id
+GET http://localhost:3000/id/65cfc5cb4d439398119d54fd
+
+### Buscar publicacion por titulo
+GET http://localhost:3000/title/titulo3
+
+### Actualizar una publicacion
+PUT http://localhost:3000/id/65cfc98802c8a8c0a08d18f2
+Content-Type: application/json
+
+{
+    "title": "titulo actualizado5",
+    "body": "body actualizado5"
+}
+
+### Eliminar una publicacion
+DELETE http://localhost:3000/id/65cfc97802c8a8c0a08d18ec
