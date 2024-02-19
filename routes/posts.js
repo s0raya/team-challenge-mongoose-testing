@@ -1,79 +1,26 @@
 const express = require("express");
 const router = express.Router();
-const Post = require('../models/Post.js')
+const Post = require('../models/Post.js');
+const PostController = require('../controllers/PostController.js')
 
-router.post("/create", async(req, res) => {
-    try{
-        const post = await Post.create(req.body);
-        res.status(201).json(post);
-    } catch (error) {
-        console.log(error);
-        res
-            .status(500)
-            .json({message: "Trouble too create a post"})
+// Create a post
+router.post("/create", PostController.create);
 
-    }
-});
+// Get all posts
+router.get('/', PostController.getPosts);
 
-router.get('/', async(req,res) => {
-    try{
-        const posts = await Post.find();
-        res.json(posts);
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "There was a problem trying to find posts" });
-    }
-})
+router.get('/postsWithPagination', PostController.getPostsWithPag)
 
-router.get('/id/:_id', async(req,res) => {
-    try {
-        const id = req.params._id;
-        const post = await Post.findById(id);
-        res.json(post)
-    } catch (error) {
-        console.log(error)
-    }
-})
+// Get post by Id
+router.get('/id/:_id', PostController.getPostById)
 
-//Endpoint para buscar una publicación por su titulo        
-router.get('/title/:title', async(req,res) => {
-    try{
-        const titlePost = req.params.title;
-        const post = await Post.findOne({title: titlePost})
-        res.json(post);
-    } catch {
-        console.log(error)
-        res.status(500).json({ message: "There was a problem trying to find post by title" });
-    }
-})
+// Get post by title
+router.get('/title/:title', PostController.getPostByTitle);
 
-router.put('/id/:_id', async(req,res) => {
-    try{
-        const id = req.params._id;
-        const updateTitlePost = await Post.findByIdAndUpdate(
-            id, {
-                ...req.body
-            }, {new: true}
-        )
-        res.json(updateTitlePost)
-    } catch (error) {
-        console.log(error)
+// Update title
+router.put('/id/:_id', PostController.updateTitle);
 
-    }
-})
-
-router.delete('/id/:_id', async(req,res) => {
-    try{
-        const id = req.params._id
-        const deletedPost = await Post.findByIdAndDelete(id)
-        if (!deletedPost) {
-            return res.status(404).json({message: 'Post with that id not found'})
-        }
-        res.json({message: 'Post deleted successfully', deletedPost})
-    } catch (error) {
-        console.log(error)
-
-    }
-})
+// Delete post
+router.delete('/id/:_id', PostController.deletePost);
 
 module.exports = router; 

@@ -6,18 +6,18 @@ POST http://localhost:3000/create
 Content-Type: application/json
 
 {
-    "title": "titulo 5",   
-    "body": "body 5"
+    "title": "titulo 22",   
+    "body": "body 22"
 }
 
 ### Buscar publicacion por id
-GET http://localhost:3000/id/65cfc5cb4d439398119d54fd
+GET http://localhost:3000/id/65d2694014692a48a881ddc0
 
 ### Buscar publicacion por titulo
-GET http://localhost:3000/title/titulo%201
+GET http://localhost:3000/title/titulo 1
 
 ### Actualizar una publicacion
-PUT http://localhost:3000/id/65cfc98802c8a8c0a08d18f2
+PUT http://localhost:3000/id/65d2694014692a48a881ddc0
 Content-Type: application/json
 
 {
@@ -26,4 +26,7 @@ Content-Type: application/json
 }
 
 ### Eliminar una publicacion
-DELETE http://localhost:3000/id/65cfc97802c8a8c0a08d18ec
+DELETE http://localhost:3000/id/65d2694014692a48a881ddc0
+
+### Obtener publicaciones con paginacion
+GET http://localhost:3000/postsWithPagination?page=3

@@ -3,8 +3,14 @@ const { stringify } = require('querystring');
 
 const PostSchema = new mongoose.Schema(
     {
-        title: String,
-        body: String
+        title: {
+            type: String,
+            required: true
+        },
+        body: {
+            type: String,
+            required: true
+        }
     },
     { timestamps: true}
 )
